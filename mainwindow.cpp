@@ -62,6 +62,16 @@ void MainWindow::on_pushButton_2_clicked()
         //now get results
         QString tmp=QString::number(res.getTotalCharacterCount());
         ui->totalWordCountlbl->setText(tmp);
+        tmp=QString::number(res.getNumberOfIdentifiers());
+        ui->idenLbl->setText(tmp);
+        tmp=QString::number(res.getNumberOfKeywords());
+        ui->keywordLbl->setText(tmp);
+        tmp=QString::number(res.getNumberOfOperators());
+        ui->operLbl->setText(tmp);
+        tmp=QString::number(res.getNumberOfOtherSymbols());
+        ui->otherLbl->setText(tmp);
+        tmp=QString::number(res.getNumberOfComments());
+        ui->commLbl->setText(tmp);
 
 
 }
