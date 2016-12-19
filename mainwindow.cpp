@@ -3,6 +3,8 @@
 #include "syntaxhighlighter.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
+#include <QTextStream>
+#include <LexicalAnalyzer/LexAn.h>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -41,4 +43,25 @@ void MainWindow::openFileButtonClicked(){
             if (file.open(QFile::ReadOnly | QFile::Text))
                 ui->plainTextEdit->setPlainText(file.readAll());
         }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    // it is the analyze button.
+    //create a file and write all the text from code editor in it
+    QFile file("in.txt");
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return;
+
+        QTextStream out(&file);
+        out <<ui->plainTextEdit->toPlainText() << "\n";
+        file.close();
+        //start analyzing
+        LexAn res;
+        res.scanwords();
+        //now get results
+        QString tmp=QString::number(res.getTotalCharacterCount());
+        ui->totalWordCountlbl->setText(tmp);
+
+
 }

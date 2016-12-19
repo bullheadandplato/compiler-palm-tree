@@ -24,6 +24,8 @@ private slots:
     void openFileButtonClicked();
 
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     SyntaxHighlighter *syntaxHigh;

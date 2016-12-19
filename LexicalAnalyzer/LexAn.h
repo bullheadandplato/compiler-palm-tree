@@ -8,6 +8,8 @@ class LexAn : public Base
 		FILE *fout;
 		char bufferin[2][256];
 		char bufferscan[256];
+        int totalCharCount=0;
+
 	public:
 		LexAn()
 		{

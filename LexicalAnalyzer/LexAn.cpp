@@ -7,7 +7,6 @@ void LexAn::scanwords()
 	int i, j, k;
 	int count = 0;
 	int chgLine = 0;
-    int totalCharCount=0;
 
 	while (1)
 	{
@@ -502,8 +501,13 @@ void LexAn::wordkind(char str[])
 		fprintf(fout, "  [ %s ]  ----  [ The wrong word ]\n", str);
 	}
 }
+int LexAn::getTotalCharacterCount(){
+    return totalCharCount;
+}
+
 LexAn::~LexAn()
 {
 	fclose(fin);
 	fclose(fout);
 }
+
