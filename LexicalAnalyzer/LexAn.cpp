@@ -97,6 +97,8 @@ void LexAn::clearnotes()
 				}
 				note[noteCount] = '\0';
 				noteCount = 0;
+                //yes it is comment increment comment count.
+                commentCount++;
                 fprintf(fout, "  [ %s ]  ----  [ comment ]\n", note);
 				bufferin[buffernum][i] = '\0';
 				break;
@@ -115,6 +117,8 @@ void LexAn::clearnotes()
 						note[noteCount++] = bufferin[buffernum][j];
 						note[noteCount] = '\0';
 						noteCount = 0;
+                        //yes it is comment increment comment count.
+                        commentCount++;
                         fprintf(fout, "  [ %s ]  ----  [ comment ]\n", note);
 						break;
 					}
@@ -417,15 +421,19 @@ void LexAn::wordkind(char str[])
 		}
 		else
 		{
+            //yes it is keyword increment keyword count.
+            keywordsCount++;
 			fprintf(fout, "  [ %s ]  ----  [ Keyword ]\n", str);
 		}
 	}
 	else if (signwords(str) == 1)
 	{
+        identifierCount++;
 		fprintf(fout, "  [ %s ]  ----  [ Identifiers ]\n", str);
 	}
 	else if (integers(str) == 1)
 	{
+
 		fprintf(fout, "  [ %s ]  ----  [ Integer ]\n", str);
 	}
 	else if (floats(str) == 1)
@@ -444,36 +452,44 @@ void LexAn::wordkind(char str[])
 	{
 		if (strcmp(str, "<") == 0 || strcmp(str, ">") == 0 || strcmp(str, "<=") == 0 || strcmp(str, ">=") == 0)
 		{
-			fprintf(fout, "  [ %s ]  ----  [ < > <= >= ]\n", str);
+            OperatorCount++;
+            fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
 		}
 		else if (strcmp(str, "<<") == 0 || strcmp(str, ">>") == 0 || strcmp(str, ">>>") == 0 || strcmp(str, "<<<") == 0)
 		{
-			fprintf(fout, "  [ %s ]  ----  [ << >> ]\n", str);
+            OperatorCount++;
+            fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
 		}
 		else if (strchr(str, '=') != NULL)
 		{
 			if (strcmp(str, "==") == 0 || strcmp(str, "!=") == 0)
 			{
-				fprintf(fout, "  [ %s ]  ----  [ == != ]\n", str);
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
 			}
 			else
 			{
+                OperatorCount++;
 				fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
 			}
 		}
 		else if (strcmp(str, "||") == 0)
 		{
-			fprintf(fout, "  [ %s ]  ----  [ || ]\n", str);
+            OperatorCount++;
+            fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
 		}
 		else if (strcmp(str, "&&") == 0)
 		{
-			fprintf(fout, "  [ %s ]  ----  [ && ]\n", str);
+            OperatorCount++;
+            fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
 		}
         else if (strcmp(str, "++") == 0 || strcmp(str, "--") == 0 ){
+            OperatorCount++;
             fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
         }
             else if( strcmp(str, "!") == 0 || strcmp(str, "~") == 0){
-            fprintf(fout, "  [ %s ]  ----  [ ! ~ ]\n", str);
+            OperatorCount++;
+            fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
 
             }
 
@@ -482,18 +498,51 @@ void LexAn::wordkind(char str[])
 		{
 			switch (str[0])
 			{
-			case '?': case ':': fprintf(fout, "  [ %s ]  ----  [ ?: ]\n", str); break;
+            case '?': case ':':
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
+                break;
 			case ' ': fprintf(fout, "  [ %s ]  ----  [ Spaces ]\n", str); break;
 			case '{':case '}': fprintf(fout, "  [ %s ]  ----  [ {} ]\n", str); break;
 			case '[':case ']':case '(':case ')':case '.': fprintf(fout, "  [ %s ]  ----  [ [] () . ]\n", str); break;
 			case ',': fprintf(fout, "  [ %s ]  ----  [ , ]\n", str); break;
 			case ';': fprintf(fout, "  [ %s ]  ----  [ ; ]\n", str); break;
-			case '+':case '-': fprintf(fout, "  [ %s ]  ----  [ + ]\n", str); break;
-			case '*':case '/':case '%': fprintf(fout, "  [ %s ]  ----  [ * / ]\n", str); break;
-			case '|': fprintf(fout, "  [ %s ]  ----  [ | ]\n", str); break;
-			case '^': fprintf(fout, "  [ %s ]  ----  [ ^ ]\n", str); break;
-			case '&': fprintf(fout, "  [ %s ]  ----  [ & ]\n", str); break;
-			default: fprintf(fout, "  [ %s ]  ----  [ Other symbols ]\n", str); break;
+            case '+':
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
+                break;
+            case '-':
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
+                break;
+            case '*':
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
+                break;
+            case '/':
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
+                break;
+            case '%':
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
+                break;
+            case '|':
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
+                break;
+            case '^':
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
+                break;
+            case '&':
+                OperatorCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Operator ]\n", str);
+                break;
+            default:
+                OtherSymbolCount++;
+                fprintf(fout, "  [ %s ]  ----  [ Other symbols ]\n", str);
+                break;
 			}
 		}
 	}
@@ -504,6 +553,22 @@ void LexAn::wordkind(char str[])
 }
 int LexAn::getTotalCharacterCount(){
     return totalCharCount;
+}
+int LexAn::getNumberOfComments(){
+    return commentCount;
+}
+int LexAn::getNumberOfIdentifiers(){
+    return identifierCount;
+}
+int LexAn::getNumberOfOperators(){
+    return OperatorCount;
+
+}
+int LexAn::getNumberOfOtherSymbols(){
+    return OtherSymbolCount;
+}
+int LexAn::getNumberOfKeywords(){
+    return keywordsCount;
 }
 
 LexAn::~LexAn()
