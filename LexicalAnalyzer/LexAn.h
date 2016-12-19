@@ -19,5 +19,13 @@ class LexAn : public Base
 		void clearnotes();//Clear the comment and extra spaces
 		void getwords(int state);//Process the word
 		void wordkind(char str[]);//The word type is judged and output
+
+        //getter and setters for the interface
+        int getTotalCharacterCount();
+        int getNumberOfIdentifiers();
+        int getNumberOfKeywords();
+        int getNumberOfComments();
+        int getNumberOfOperators();
+        int getNumberOfOtherSymbols();
 };
 #endif 

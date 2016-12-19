@@ -44,6 +44,9 @@ font: 20pt &quot;Cantarell&quot;;
     </item>
     <item row="0" column="1">
      <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QPushButton" name="pushButton_2">
         <property name="text">

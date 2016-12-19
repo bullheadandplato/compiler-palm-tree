@@ -7,6 +7,7 @@ void LexAn::scanwords()
 	int i, j, k;
 	int count = 0;
 	int chgLine = 0;
+    int totalCharCount=0;
 
 	while (1)
 	{
@@ -15,6 +16,8 @@ void LexAn::scanwords()
 		{
 			break;
 		}
+        //increment total characters
+        totalCharCount++;
 		/*Newline character*/
 		if (c == '\n' || count == 256 - 2)
 		{
@@ -94,7 +97,7 @@ void LexAn::clearnotes()
 				}
 				note[noteCount] = '\0';
 				noteCount = 0;
-				fprintf(fout, "  [ %s ]  ----  [ notes ]\n", note);
+                fprintf(fout, "  [ %s ]  ----  [ comment ]\n", note);
 				bufferin[buffernum][i] = '\0';
 				break;
 			}
@@ -112,7 +115,7 @@ void LexAn::clearnotes()
 						note[noteCount++] = bufferin[buffernum][j];
 						note[noteCount] = '\0';
 						noteCount = 0;
-						fprintf(fout, "  [ %s ]  ----  [ notes ]\n", note);
+                        fprintf(fout, "  [ %s ]  ----  [ comment ]\n", note);
 						break;
 					}
 				}
