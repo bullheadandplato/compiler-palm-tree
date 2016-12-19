@@ -9,6 +9,11 @@ class LexAn : public Base
 		char bufferin[2][256];
 		char bufferscan[256];
         int totalCharCount=0;
+        int commentCount=0;
+        int identifierCount=0;
+        int OperatorCount=0;
+        int OtherSymbolCount=0;
+        int keywordsCount=0;
 
 	public:
 		LexAn()
