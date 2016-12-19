@@ -548,6 +548,7 @@ void LexAn::wordkind(char str[])
 	}
 	else
 	{
+        OtherSymbolCount++;
 		fprintf(fout, "  [ %s ]  ----  [ The wrong word ]\n", str);
 	}
 }
