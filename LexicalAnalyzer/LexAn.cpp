@@ -15,8 +15,9 @@ void LexAn::scanwords()
 		{
 			break;
 		}
-        //increment total characters
-        totalCharCount++;
+        //increment total characters not while its space
+        if(c!=' ')
+            totalCharCount++;
 		/*Newline character*/
 		if (c == '\n' || count == 256 - 2)
 		{
