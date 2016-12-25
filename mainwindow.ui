@@ -121,7 +121,7 @@ font:20px;</string>
 font:20px;</string>
              </property>
              <property name="text">
-              <string>100</string>
+              <string>~</string>
              </property>
             </widget>
            </item>
@@ -147,7 +147,7 @@ font:20px;</string>
 font:20px;</string>
              </property>
              <property name="text">
-              <string>15</string>
+              <string>~</string>
              </property>
             </widget>
            </item>
@@ -173,7 +173,7 @@ font:20px;</string>
 font:20px;</string>
              </property>
              <property name="text">
-              <string>10</string>
+              <string>~</string>
              </property>
             </widget>
            </item>
@@ -199,7 +199,7 @@ font:20px;</string>
 font:20px;</string>
              </property>
              <property name="text">
-              <string>25</string>
+              <string>~</string>
              </property>
             </widget>
            </item>
@@ -225,7 +225,7 @@ font:20px;</string>
 font:20px;</string>
              </property>
              <property name="text">
-              <string>20</string>
+              <string>~</string>
              </property>
             </widget>
            </item>
@@ -251,7 +251,7 @@ font:20px;</string>
 font:20px;</string>
              </property>
              <property name="text">
-              <string>10</string>
+              <string>~</string>
              </property>
             </widget>
            </item>

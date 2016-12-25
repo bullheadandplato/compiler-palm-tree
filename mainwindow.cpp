@@ -3,6 +3,7 @@
 #include "syntaxhighlighter.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
+#include <QMessageBox>
 #include <QTextStream>
 #include <LexicalAnalyzer/LexAn.h>
 MainWindow::MainWindow(QWidget *parent) :
@@ -47,6 +48,11 @@ void MainWindow::openFileButtonClicked(){
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    // first check if code editor has text
+    if(ui->plainTextEdit->toPlainText().length()<=0){
+                QMessageBox::information(this,"No code to analyze","Pleaase include some code in code area to analyze.");
+                return;
+    }
     // it is the analyze button.
     //create a file and write all the text from code editor in it
     QFile file("in.txt");
@@ -74,4 +80,17 @@ void MainWindow::on_pushButton_2_clicked()
         ui->commLbl->setText(tmp);
 
 
+}
+
+void MainWindow::on_viewButton_clicked()
+{
+    int choice=ui->comboBox->currentIndex();
+    switch (choice) {
+    case 0:
+        // I have to show identififers
+
+        break;
+    default:
+        break;
+    }
 }
