@@ -99,6 +99,9 @@ void LexAn::clearnotes()
 				noteCount = 0;
                 //yes it is comment increment comment count.
                 commentCount++;
+                //add the comment in its array
+                comments.push_back(note);
+                //print it in file
                 fprintf(fout, "< attrs=\"comment\" value=\"%s\" />\n", note);
 				bufferin[buffernum][i] = '\0';
 				break;
@@ -119,6 +122,9 @@ void LexAn::clearnotes()
 						noteCount = 0;
                         //yes it is comment increment comment count.
                         commentCount++;
+                        //add the comment in its array
+                        comments.push_back(note);
+                        //print it in file
                         fprintf(fout, "< attrs=\"comment\" value=\"%s\" />\n", note);
 						break;
 					}
@@ -423,12 +429,18 @@ void LexAn::wordkind(char str[])
 		{
             //yes it is keyword increment keyword count.
             keywordsCount++;
+            //add the comment in its array
+            keywords.push_back(str);
+            //print it in file
             fprintf(fout, "< attrs=\"keyword\"  value=\"%s\" />\n", str);
 		}
 	}
 	else if (signwords(str) == 1)
 	{
         identifierCount++;
+        //add the comment in its array
+        identifiers.push_back(str);
+        //print it in file
         fprintf(fout, "< attrs=\"identifier\" value=\"%s\" />\n", str);
 	}
 	else if (integers(str) == 1)
@@ -453,11 +465,17 @@ void LexAn::wordkind(char str[])
 		if (strcmp(str, "<") == 0 || strcmp(str, ">") == 0 || strcmp(str, "<=") == 0 || strcmp(str, ">=") == 0)
 		{
             OperatorCount++;
+            //add the operator in its array
+            operators.push_back(str);
+            //print it in file
             fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
 		}
 		else if (strcmp(str, "<<") == 0 || strcmp(str, ">>") == 0 || strcmp(str, ">>>") == 0 || strcmp(str, "<<<") == 0)
 		{
             OperatorCount++;
+            //add the operator in its array
+            operators.push_back(str);
+            //print it in file
             fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
 		}
 		else if (strchr(str, '=') != NULL)
@@ -465,30 +483,48 @@ void LexAn::wordkind(char str[])
 			if (strcmp(str, "==") == 0 || strcmp(str, "!=") == 0)
 			{
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
 			}
 			else
 			{
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
 			}
 		}
 		else if (strcmp(str, "||") == 0)
 		{
             OperatorCount++;
+            //add the operator in its array
+            operators.push_back(str);
+            //print it in file
             fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
 		}
 		else if (strcmp(str, "&&") == 0)
 		{
             OperatorCount++;
+            //add the operator in its array
+            operators.push_back(str);
+            //print it in file
             fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
 		}
         else if (strcmp(str, "++") == 0 || strcmp(str, "--") == 0 ){
             OperatorCount++;
+            //add the operator in its array
+            operators.push_back(str);
+            //print it in file
             fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
         }
             else if( strcmp(str, "!") == 0 || strcmp(str, "~") == 0){
             OperatorCount++;
+            //add the operator in its array
+            operators.push_back(str);
+            //print it in file
             fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
 
             }
@@ -500,6 +536,9 @@ void LexAn::wordkind(char str[])
 			{
             case '?': case ':':
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
                 break;
             case ' ': fprintf(fout, "< attrs=\"spaces\" value=\"%s\" />\n", str); break;
@@ -509,38 +548,65 @@ void LexAn::wordkind(char str[])
             case ';': fprintf(fout, "< attrs=\";\" value=\"%s\" />\n", str); break;
             case '+':
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
                 break;
             case '-':
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
                 break;
             case '*':
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
                 break;
             case '/':
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
                 break;
             case '%':
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
                 break;
             case '|':
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
                 break;
             case '^':
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
                 break;
             case '&':
                 OperatorCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"operator\" value=\"%s\" />\n", str);
                 break;
             default:
                 OtherSymbolCount++;
+                //add the operator in its array
+                operators.push_back(str);
+                //print it in file
                 fprintf(fout, "< attrs=\"other\" value=\"%s\" />\n", str);
                 break;
 			}
@@ -570,6 +636,22 @@ int LexAn::getNumberOfOtherSymbols(){
 }
 int LexAn::getNumberOfKeywords(){
     return keywordsCount;
+}
+
+std::vector<std::string> LexAn::getKeywords(){
+    return keywords;
+}
+std::vector<std::string> LexAn::getIdentifiers(){
+    return identifiers;
+}
+std::vector<std::string> LexAn::getAll(){
+    return all;
+}
+std::vector<std::string> LexAn::getComments(){
+    return comments;
+}
+std::vector<std::string> LexAn::getOperators(){
+    return operators;
 }
 
 LexAn::~LexAn()

@@ -5,6 +5,7 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include"LexicalAnalyzer/LexAn.h"
 
 namespace Ui {
 class MainWindow;
@@ -33,6 +34,7 @@ private:
     SyntaxHighlighter *syntaxHigh;
     QPushButton *openFileButton;
     QPushButton *aboutButton;
+    LexAn       analyzer;
 };
 
 #endif // MAINWINDOW_H

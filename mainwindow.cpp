@@ -6,6 +6,9 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <LexicalAnalyzer/LexAn.h>
+#include<vector>
+#include<string>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -63,20 +66,19 @@ void MainWindow::on_pushButton_2_clicked()
         out <<ui->plainTextEdit->toPlainText() << "\n";
         file.close();
         //start analyzing
-        LexAn res;
-        res.scanwords();
-        //now get results
-        QString tmp=QString::number(res.getTotalCharacterCount());
+        analyzer.scanwords();
+        //now get analyzerults
+        QString tmp=QString::number(analyzer.getTotalCharacterCount());
         ui->totalWordCountlbl->setText(tmp);
-        tmp=QString::number(res.getNumberOfIdentifiers());
+        tmp=QString::number(analyzer.getNumberOfIdentifiers());
         ui->idenLbl->setText(tmp);
-        tmp=QString::number(res.getNumberOfKeywords());
+        tmp=QString::number(analyzer.getNumberOfKeywords());
         ui->keywordLbl->setText(tmp);
-        tmp=QString::number(res.getNumberOfOperators());
+        tmp=QString::number(analyzer.getNumberOfOperators());
         ui->operLbl->setText(tmp);
-        tmp=QString::number(res.getNumberOfOtherSymbols());
+        tmp=QString::number(analyzer.getNumberOfOtherSymbols());
         ui->otherLbl->setText(tmp);
-        tmp=QString::number(res.getNumberOfComments());
+        tmp=QString::number(analyzer.getNumberOfComments());
         ui->commLbl->setText(tmp);
 
 
@@ -96,10 +98,16 @@ void MainWindow::on_viewButton_clicked()
 
     int choice=ui->comboBox->currentIndex();
     switch (choice) {
-    case 0:
+    case 0:{
         // I have to show identififers
+        std::vector<std::string> temp=analyzer.getIdentifiers();
+        for(std::size_t i=0;i<temp.size();i++){
+
+            std::cout<<"Identifier is: "<<temp[i];
+        }
 
         break;
+    }
     default:
         break;
     }
