@@ -1,6 +1,8 @@
 #ifndef _LEXAN_H_
 #define _LEXAN_H_
 #include"Base.h"
+#include<vector>
+#include<string>
 class LexAn : public Base
 {
 	private:
@@ -14,6 +16,14 @@ class LexAn : public Base
         int OperatorCount=0;
         int OtherSymbolCount=0;
         int keywordsCount=0;
+
+        //the arrays for the data
+        std::vector<std::string> identifiers;
+        std::vector<std::string> keywords;
+        std::vector<std::string> comments;
+        std::vector<std::string> operators;
+        std::vector<std::string> all;
+
 
 	public:
 		LexAn()
@@ -34,5 +44,11 @@ class LexAn : public Base
         int getNumberOfComments();
         int getNumberOfOperators();
         int getNumberOfOtherSymbols();
+        std::vector<std::string> getIdentifiers();
+        std::vector<std::string> getKeywords();
+        std::vector<std::string> getComments();
+        std::vector<std::string> getOperators();
+        std::vector<std::string> getAll();
+
 };
 #endif 

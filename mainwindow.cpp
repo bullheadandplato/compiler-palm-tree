@@ -84,6 +84,16 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_viewButton_clicked()
 {
+    //open the file
+    QFile file("out.txt");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+        QMessageBox messageBox;
+        messageBox.setText("Cannot open file for reading");
+        messageBox.setButtonText(QMessageBox::Ok,"Okay");
+        messageBox.exec();
+        return;
+    }
+
     int choice=ui->comboBox->currentIndex();
     switch (choice) {
     case 0:
