@@ -19,6 +19,10 @@ MainWindow::MainWindow(QWidget *parent) :
     syntaxHigh=new SyntaxHighlighter(ui->plainTextEdit->document());
     //add button to main toolbar
     this->addWidgetsToolBar();
+    // hide the second frame
+    ui->frame_2->hide();
+    //disable the clear button
+    ui->pushButton_3->hide();
 
 }
 
@@ -52,6 +56,7 @@ void MainWindow::openFileButtonClicked(){
 
 void MainWindow::on_pushButton_2_clicked()
 {
+
     // first check if code editor has text
     if(ui->plainTextEdit->toPlainText().length()<=0){
                 QMessageBox::information(this,"No code to analyze","Pleaase include some code in code area to analyze.");
@@ -62,6 +67,11 @@ void MainWindow::on_pushButton_2_clicked()
     QFile file("in.txt");
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
             return;
+        ui->frame_2->show();
+        //show the clear button
+        ui->pushButton_3->show();
+        //set the current mode for the clear button
+        isInParseMode=false;
 
         QTextStream out(&file);
         out <<ui->plainTextEdit->toPlainText() << "\n";
@@ -147,4 +157,22 @@ void MainWindow::populateTableView(std::vector<std::string> temp, std::__cxx11::
         model->setItem(i,1,firstRow);
         model->setItem(i,0,secondRow);
     }
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    //this is the clear button
+    //check if im in analyze or parse mode
+    if(isInParseMode){
+        //this is the parse mdoe
+    }else{
+        //im in analyze mode
+        ui->frame_2->hide();
+        ui->plainTextEdit->clear();
+        ui->pushButton_3->hide();
+
+    }
+    QMessageBox::information(this,"Clear","Everything cleared!!");
+
+
 }

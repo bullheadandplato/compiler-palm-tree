@@ -29,12 +29,16 @@ private slots:
 
     void on_viewButton_clicked();
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
     SyntaxHighlighter *syntaxHigh;
     QPushButton *openFileButton;
     QPushButton *aboutButton;
     LexAn       analyzer;
+    bool        isInParseMode;
+
     void populateTableView(std::vector<std::string> temp, std::string attr);
 };
 

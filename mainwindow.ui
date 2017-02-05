@@ -61,6 +61,13 @@ font: 20pt &quot;Cantarell&quot;;
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item row="0" column="2">
