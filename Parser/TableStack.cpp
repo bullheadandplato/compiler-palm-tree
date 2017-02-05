@@ -47,13 +47,13 @@ void TableStack::analyExp(string s)
 
 	while (left_any.size()>0)
 	{
-		//cout<<"·ÖÎöÕ»£º";
+
 		string outs = "";
 		for (int i = 0; i<to_any.size(); i++)
 			outs += to_any[i];
 		cout << setw(15) << outs;
 
-		//cout<<"Ê£ÓàÊäÈë´®£º";
+
 		outs = "";
 		for (int i = left_any.size() - 1; i >= 0; i--)
 			outs += left_any[i];
@@ -70,7 +70,7 @@ void TableStack::analyExp(string s)
 		{
 			to_any.pop_back();
 			left_any.pop_back();
-			cout << setw(15) << char1 << "Æ¥Åä" << endl;
+			cout << setw(15) << char1 << "match" << endl;
 		}
 		else if (tableMap[get_index(char1)][get_nindex(char2)] != -1)
 		{
@@ -82,7 +82,7 @@ void TableStack::analyExp(string s)
 				for (int i = analy_str[tg].right.length() - 1; i >= 0; i--)
 					to_any.push_back(analy_str[tg].right[i]);
 			}
-			//cout<<"ÍÆµ¼£º"<<analy_str[tg].right<<endl; 
+
 			cout << setw(15) << analy_str[tg].right << endl;
 		}
 		else
@@ -122,11 +122,11 @@ void TableStack::getAns()
 	display();
 	get_table();
 	print_out();
-	//Õ»Æ¥Åä
+
 	string ss;
-	cout << "ÇëÊäÈë·ûºÅ´®£º" << endl;
+	cout << "Please enter the symbol string:" << endl;
 	cin >> ss;
-	cout << setw(15) << "·ÖÎöÕ»" << setw(15) << "Ê£ÓàÊäÈë´®" << setw(15) << "ÍÆµ¼Ê½" << endl;
+	cout << setw(15) << "Analysis of the stack" << setw(15) << "Remaining input string" << setw(15) << "Derivation" << endl;
 	analyExp(ss);
 
 }

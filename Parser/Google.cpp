@@ -1,12 +1,12 @@
-#include "Base.h"
+#include "Google.h"
 
-bool Base::isNotSymbol(char c)
+bool Google::isNotSymbol(char c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return true;
 	return false;
 }
-int Base::get_index(char target)
+int Google::get_index(char target)
 {
 	for (int i = 0; i<non_colt.size(); i++)
 	{
@@ -15,7 +15,7 @@ int Base::get_index(char target)
 	}
 	return -1;
 }
-int Base::get_nindex(char target)
+int Google::get_nindex(char target)
 {
 	for (int i = 0; i<ter_copy.size(); i++)
 	{
@@ -24,7 +24,7 @@ int Base::get_nindex(char target)
 	}
 	return -1;
 }
-void Base::get_first(char target)
+void Google::get_first(char target)
 {
 	int tag = 0;
 	int flag = 0;
@@ -70,7 +70,7 @@ void Base::get_first(char target)
 	}
 
 }
-void Base::get_follow(char target)
+void Google::get_follow(char target)
 {
 	for (int i = 0; i<T; i++)
 	{
@@ -125,7 +125,7 @@ void Base::get_follow(char target)
 
 	}
 }
-void Base::inputAndSolve()
+void Google::inputAndSolve()
 {
 	string s;
 	cout << "Number of productions entered：" << endl;
@@ -202,7 +202,7 @@ void Base::inputAndSolve()
 	}
 }
 
-void Base::display()
+void Google::display()
 {
 	cout << "FIRST SET" << endl;
 	for (int i = 0; i<non_colt.size(); i++)

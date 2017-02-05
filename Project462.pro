@@ -17,13 +17,22 @@ SOURCES += main.cpp\
     codeeditor.cpp \
     syntaxhighlighter.cpp \
     LexicalAnalyzer/Base.cpp \
-    LexicalAnalyzer/LexAn.cpp
+    LexicalAnalyzer/LexAn.cpp \
+    Parser/TableStack.cpp \
+    Parser/Google.cpp
 
 
 HEADERS  += mainwindow.h \
     codeeditor.h \
     syntaxhighlighter.h \
     LexicalAnalyzer/Base.h \
-    LexicalAnalyzer/LexAn.h
+    LexicalAnalyzer/LexAn.h \
+    Parser/TableStack.h \
+    Parser/Google.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    Parser/output.txt \
+    Parser/product.txt \
+    README.md

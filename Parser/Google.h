@@ -1,5 +1,5 @@
-#ifndef _BASE_H_
-#define _BASE_H_
+#ifndef _Google_H_
+#define _Google_H_
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -19,7 +19,7 @@ struct node
 	string right;
 };
 
-class Base
+class Google
 {
 protected:
 	int T;
@@ -32,7 +32,7 @@ protected:
 	vector<char> non_colt;
 
 public:
-	Base() :T(0){}
+    Google() :T(0){}
 	bool isNotSymbol(char c);
 	int get_index(char target);
 	int get_nindex(char target);

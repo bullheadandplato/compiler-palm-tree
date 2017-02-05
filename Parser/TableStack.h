@@ -1,20 +1,20 @@
 #ifndef _TABLESTACK_H_
 #define _TABLESTACK_H_
 
-#include"Base.h"
+#include"Google.h"
 
-class TableStack :public Base
+class TableStack :public Google
 {
 protected:
-	vector<char> to_any; //分析栈
-	vector<char> left_any;//剩余输入串
-	int tableMap[100][100];//预测表
+	vector<char> to_any; 
+	vector<char> left_any;
+	int tableMap[100][100];
 public:
 	TableStack(){ memset(tableMap, -1, sizeof(tableMap)); }
 
-	void get_table(); //得到预测表
-	void analyExp(string s); //分析栈的处理
-	void print_out();//输出
-	void getAns(); //结合处理
+	void get_table(); 
+	void analyExp(string s); 
+	void print_out();
+	void getAns(); 
 };
 #endif
