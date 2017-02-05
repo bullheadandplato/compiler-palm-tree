@@ -1,5 +1,5 @@
-#ifndef _Google_H_
-#define _Google_H_
+#ifndef _Parser_H_
+#define _Parser_H_
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -19,12 +19,12 @@ struct node
 	string right;
 };
 
-class Google
+class Parser
 {
 protected:
 	int T;
 	node analy_str[100]; 
-    std::string productions;
+    std::vector<std::string> productions;
 	set<char> first_set[100];
 	set<char> follow_set[100];
 	vector<char> ter_copy; 
@@ -32,7 +32,7 @@ protected:
 	vector<char> non_colt;
 
 public:
-    Google() :T(0){}
+    Parser() :T(0){}
 	bool isNotSymbol(char c);
 	int get_index(char target);
 	int get_nindex(char target);
@@ -41,7 +41,7 @@ public:
 	void inputAndSolve(); 
 	void display();
     void setT(int t);
-    void setProductions(std::string product[]);
+    void setProductions(std::vector<string> product);
 
 };
 #endif 

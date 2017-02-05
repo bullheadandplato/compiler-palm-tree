@@ -180,7 +180,25 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_parseButton_clicked()
 {
       //get the total number of lines
-    int count=ui->plainTextEdit->document()->blockCount();
+    QString text=ui->plainTextEdit->toPlainText();
+    QString temp;
+    std::vector<std::string> productions;
 
+    for(int i=0;i<text.length();i++){
+        if(text[i]=='\n'){
+            std::cout<<"temp is"<<temp.toStdString()<<std::endl;
+            productions.push_back(temp.toStdString());
+            temp="";
+            continue;
+        }else if(text[i]==' '){
+            //do not add spaces
+            continue;
+        }
+        temp.append(text[i]);
+    }
+
+    //set the parser options.
+    parser.setProductions(productions);
+    parser.setT(productions.size());
 
 }

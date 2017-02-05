@@ -1,12 +1,12 @@
-#include "Google.h"
+#include "Parser/Parser.h"
 
-bool Google::isNotSymbol(char c)
+bool Parser::isNotSymbol(char c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return true;
 	return false;
 }
-int Google::get_index(char target)
+int Parser::get_index(char target)
 {
 	for (int i = 0; i<non_colt.size(); i++)
 	{
@@ -15,7 +15,7 @@ int Google::get_index(char target)
 	}
 	return -1;
 }
-int Google::get_nindex(char target)
+int Parser::get_nindex(char target)
 {
 	for (int i = 0; i<ter_copy.size(); i++)
 	{
@@ -24,7 +24,7 @@ int Google::get_nindex(char target)
 	}
 	return -1;
 }
-void Google::get_first(char target)
+void Parser::get_first(char target)
 {
 	int tag = 0;
 	int flag = 0;
@@ -70,7 +70,7 @@ void Google::get_first(char target)
 	}
 
 }
-void Google::get_follow(char target)
+void Parser::get_follow(char target)
 {
 	for (int i = 0; i<T; i++)
 	{
@@ -125,14 +125,14 @@ void Google::get_follow(char target)
 
 	}
 }
-void Google::setT(int t){
+void Parser::setT(int t){
     this->T=t;
 }
-void Google::setProductions(string product[]){
+void Parser::setProductions(std::vector<std::string> product){
     this->productions=product;
 }
 
-void Google::inputAndSolve()
+void Parser::inputAndSolve()
 {
 	string s;
 
@@ -208,7 +208,7 @@ void Google::inputAndSolve()
 	}
 }
 
-void Google::display()
+void Parser::display()
 {
 	cout << "FIRST SET" << endl;
 	for (int i = 0; i<non_colt.size(); i++)

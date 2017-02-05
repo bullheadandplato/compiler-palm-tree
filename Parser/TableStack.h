@@ -1,9 +1,9 @@
 #ifndef _TABLESTACK_H_
 #define _TABLESTACK_H_
 
-#include"Google.h"
+#include"Parser.h"
 
-class TableStack :public Google
+class TableStack :public Parser
 {
 protected:
 	vector<char> to_any; 

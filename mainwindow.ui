@@ -55,7 +55,7 @@ font: 20pt &quot;Cantarell&quot;;
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="parseButton">
         <property name="text">
          <string>Parse</string>
         </property>

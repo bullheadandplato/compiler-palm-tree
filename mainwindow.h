@@ -6,7 +6,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include"LexicalAnalyzer/LexAn.h"
-
+#include "Parser/Parser.h"
 namespace Ui {
 class MainWindow;
 }
@@ -31,12 +31,15 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_parseButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SyntaxHighlighter *syntaxHigh;
     QPushButton *openFileButton;
     QPushButton *aboutButton;
     LexAn       analyzer;
+    Parser      parser;
     bool        isInParseMode;
 
     void populateTableView(std::vector<std::string> temp, std::string attr);
