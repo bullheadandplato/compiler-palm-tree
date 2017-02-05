@@ -331,7 +331,7 @@ font:14px;
         </layout>
        </item>
        <item>
-        <widget class="QTextEdit" name="textEdit"/>
+        <widget class="QTableWidget" name="tableWidget"/>
        </item>
       </layout>
      </widget>
