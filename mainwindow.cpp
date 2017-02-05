@@ -102,32 +102,35 @@ void MainWindow::on_viewButton_clicked()
     case 0:{
         // I have to show identififers
         std::vector<std::string> temp=analyzer.getIdentifiers();
-        QTableView *table=ui->tableView;
 
-        QStandardItemModel *model = new QStandardItemModel(temp.size(),2,this);
-        model->setHorizontalHeaderItem(0, new QStandardItem(QString("Attribute")));
-        model->setHorizontalHeaderItem(1, new QStandardItem(QString("Value")));
-        table->setModel(model);
-        table->setColumnWidth(1,200);
-        model->setColumnCount(2);
-        model->setRowCount(temp.size());
-
-        for(std::size_t i=0;i<temp.size();i++){
-            QString tmp;
-            tmp=tmp.fromStdString(temp[i]);
-            QStandardItem *firstRow = new QStandardItem(tmp);
-
-            QStandardItem *secondRow = new QStandardItem(QString("identifier"));
-            secondRow->setEditable(false);
-            firstRow->setEditable(false);
-
-            model->setItem(i,1,firstRow);
-            model->setItem(i,0,secondRow);
-        }
 
         break;
     }
     default:
         break;
+    }
+}
+void MainWindow::populateTableView(std::vector<std::string> temp){
+    QTableView *table=ui->tableView;
+
+    QStandardItemModel *model = new QStandardItemModel(temp.size(),2,this);
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Attribute")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Value")));
+    table->setModel(model);
+    table->setColumnWidth(1,200);
+    model->setColumnCount(2);
+    model->setRowCount(temp.size());
+
+    for(std::size_t i=0;i<temp.size();i++){
+        QString tmp;
+        tmp=tmp.fromStdString(temp[i]);
+        QStandardItem *firstRow = new QStandardItem(tmp);
+
+        QStandardItem *secondRow = new QStandardItem(QString("identifier"));
+        secondRow->setEditable(false);
+        firstRow->setEditable(false);
+
+        model->setItem(i,1,firstRow);
+        model->setItem(i,0,secondRow);
     }
 }
