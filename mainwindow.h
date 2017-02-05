@@ -35,7 +35,7 @@ private:
     QPushButton *openFileButton;
     QPushButton *aboutButton;
     LexAn       analyzer;
-    void populateTableView(std::vector<std::string> temp);
+    void populateTableView(std::vector<std::string> temp, std::string attr);
 };
 
 #endif // MAINWINDOW_H

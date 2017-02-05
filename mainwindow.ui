@@ -309,12 +309,7 @@ font:14px;
              </item>
              <item>
               <property name="text">
-               <string>Other symbols</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>All</string>
+               <string>Comments</string>
               </property>
              </item>
             </widget>

@@ -101,16 +101,27 @@ void MainWindow::on_viewButton_clicked()
     switch (choice) {
     case 0:{
         // I have to show identififers
-        std::vector<std::string> temp=analyzer.getIdentifiers();
+        populateTableView(analyzer.getIdentifiers(),"identifier");
 
-
+        break;
+    }
+      case 1:{
+        populateTableView(analyzer.getKeywords(),"keyword");
+        break;
+    }
+    case 2:{
+        populateTableView(analyzer.getOperators(),"operator");
+        break;
+    }
+    case 3:{
+        populateTableView(analyzer.getComments(),"comment");
         break;
     }
     default:
         break;
     }
 }
-void MainWindow::populateTableView(std::vector<std::string> temp){
+void MainWindow::populateTableView(std::vector<std::string> temp, std::__cxx11::string attr){
     QTableView *table=ui->tableView;
 
     QStandardItemModel *model = new QStandardItemModel(temp.size(),2,this);
@@ -121,12 +132,15 @@ void MainWindow::populateTableView(std::vector<std::string> temp){
     model->setColumnCount(2);
     model->setRowCount(temp.size());
 
+    QString attrs;
+    attrs=attrs.fromStdString(attr);
+
     for(std::size_t i=0;i<temp.size();i++){
         QString tmp;
         tmp=tmp.fromStdString(temp[i]);
         QStandardItem *firstRow = new QStandardItem(tmp);
 
-        QStandardItem *secondRow = new QStandardItem(QString("identifier"));
+        QStandardItem *secondRow = new QStandardItem(attrs);
         secondRow->setEditable(false);
         firstRow->setEditable(false);
 
