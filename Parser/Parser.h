@@ -24,7 +24,7 @@ class Google
 protected:
 	int T;
 	node analy_str[100]; 
-
+    std::string productions;
 	set<char> first_set[100];
 	set<char> follow_set[100];
 	vector<char> ter_copy; 
@@ -40,6 +40,8 @@ public:
 	void get_follow(char target);
 	void inputAndSolve(); 
 	void display();
+    void setT(int t);
+    void setProductions(std::string product[]);
 
 };
 #endif 

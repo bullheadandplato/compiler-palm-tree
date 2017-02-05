@@ -19,7 +19,7 @@ SOURCES += main.cpp\
     LexicalAnalyzer/Base.cpp \
     LexicalAnalyzer/LexAn.cpp \
     Parser/TableStack.cpp \
-    Parser/Google.cpp
+    Parser/Parser.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -28,7 +28,7 @@ HEADERS  += mainwindow.h \
     LexicalAnalyzer/Base.h \
     LexicalAnalyzer/LexAn.h \
     Parser/TableStack.h \
-    Parser/Google.h
+    Parser/Parser.h
 
 FORMS    += mainwindow.ui
 

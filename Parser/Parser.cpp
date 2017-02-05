@@ -125,14 +125,20 @@ void Google::get_follow(char target)
 
 	}
 }
+void Google::setT(int t){
+    this->T=t;
+}
+void Google::setProductions(string product[]){
+    this->productions=product;
+}
+
 void Google::inputAndSolve()
 {
 	string s;
-	cout << "Number of productions entered：" << endl;
-	cin >> T;
+
 	for (int index = 0; index<T; index++)
 	{
-		cin >> s;
+        s=productions[index];
 		string temp = "";
 		for (int i = 0; i<s.length(); i++)
 		{

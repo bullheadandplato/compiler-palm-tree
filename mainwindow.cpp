@@ -176,3 +176,11 @@ void MainWindow::on_pushButton_3_clicked()
 
 
 }
+
+void MainWindow::on_parseButton_clicked()
+{
+      //get the total number of lines
+    int count=ui->plainTextEdit->document()->blockCount();
+
+
+}
