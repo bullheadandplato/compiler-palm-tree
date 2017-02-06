@@ -4,6 +4,7 @@ CS462 term project. lexical analyzer and parser for C++ language<br>
 1. C++ knowledge<br>
 2. Familiar with QT<br>
 3. QT 5.7 or above<br>
+
 # Process<br>
 Clone the project and open it in QT. simple enough!!!
 # License
