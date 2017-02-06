@@ -43,6 +43,7 @@ private:
     bool        isInParseMode;
 
     void populateTableView(std::vector<std::string> temp, std::string attr);
+    void populateSets();
 };
 
 #endif // MAINWINDOW_H

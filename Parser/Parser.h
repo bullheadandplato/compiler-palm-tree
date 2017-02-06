@@ -42,9 +42,9 @@ public:
 	void display();
     void setT(int t);
     void setProductions(std::vector<string> product);
-    node getAnalyString();
-    set<char> getFirstSet();
-    set<char> getFollowSet();
+    node *getAnalyString();
+    set<char> *getFirstSet();
+    set<char> *getFollowSet();
     vector<char> getNonColt();
     vector<char> getCopy();
     vector<char> getColt();

@@ -9,7 +9,7 @@
 #include<vector>
 #include<string>
 #include <QStandardItem>
-
+using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -201,4 +201,45 @@ void MainWindow::on_parseButton_clicked()
     parser.setProductions(productions);
     parser.setT(productions.size());
     parser.getAns();
+    //populate the table
+    populateSets();
+
+}
+void MainWindow::populateSets(){
+    QTableView *table=ui->firstSetTable;
+    vector<char> non_colt=parser.getNonColt();
+    set<char>*   first_set=parser.getFirstSet();
+    set<char>*   follow_set=parser.getFollowSet();
+
+    QStandardItemModel *model = new QStandardItemModel(non_colt.size(),2,this);
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Symbol")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Set")));
+    table->setModel(model);
+    table->setColumnWidth(1,200);
+    model->setColumnCount(2);
+    model->setRowCount(non_colt.size());
+
+    for (int i = 0; i<non_colt.size(); i++)
+    {
+        QString tmp;
+
+        set<char>::iterator it;
+        for (it = first_set[i].begin(); it != first_set[i].end(); it++){
+            tmp[tmp.length()]=QChar(*it);
+            tmp.append(", ");
+
+        }
+        QStandardItem *firstRow = new QStandardItem(tmp);
+        firstRow->setEditable(false);
+        model->setItem(i,1,firstRow);
+    }
+
+    for (int i = 0; i<non_colt.size(); i++)
+    {
+        cout << non_colt[i] << ": ";
+        set<char>::iterator it;
+        for (it = follow_set[i].begin(); it != follow_set[i].end(); it++)
+            cout << *it << "  ";
+        cout << endl;
+    }
 }

@@ -96,12 +96,10 @@ void TableStack::analyExp(string s)
 vector<char> TableStack::getLeftAny(){
     return this->left_any;
 }
-vectot<char> TableStack::getRightAny(){
+vector<char> TableStack::getRightAny(){
     return this->to_any;
 }
-int* TableStack::getTableMap(){
-    return this->tableMap;
-}
+
 
 void TableStack::getAns()
 {
@@ -109,11 +107,11 @@ void TableStack::getAns()
 	display();
 	get_table();
 
-	string ss;
-	cout << "Please enter the symbol string:" << endl;
-	cin >> ss;
-	cout << setw(15) << "Analysis of the stack" << setw(15) << "Remaining input string" << setw(15) << "Derivation" << endl;
-	analyExp(ss);
+    //string ss;
+    //cout << "Please enter the symbol string:" << endl;
+    //cin >> ss;
+    //cout << setw(15) << "Analysis of the stack" << setw(15) << "Remaining input string" << setw(15) << "Derivation" << endl;
+    //analyExp(ss);
 
 }
 
