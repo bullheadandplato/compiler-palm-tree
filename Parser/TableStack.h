@@ -15,5 +15,8 @@ public:
 	void get_table(); 
 	void analyExp(string s); 
 	void getAns(); 
+    vector<char> getRightAny();
+    vector<char> getLeftAny();
+    int* getTableMap();
 };
 #endif

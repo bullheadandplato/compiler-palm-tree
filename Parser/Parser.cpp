@@ -230,3 +230,25 @@ void Parser::display()
 		cout << endl;
 	}
 }
+/*
+ * getter section
+ *
+*/
+node Parser::getAnalyString(){
+    return this->analy_str;
+}
+set<char> Parser::getFirstSet(){
+    return this->first_set;
+}
+set<char> Parser::getFollowSet(){
+    return this->follow_set;
+}
+vector<char> Parser::getColt(){
+    return this->ter_colt;
+}
+vector<char> Parser::getNonColt(){
+    return this->non_colt;
+}
+vector<char> Parser::getCopy(){
+    return this->ter_copy;
+}

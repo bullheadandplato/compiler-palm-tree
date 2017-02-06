@@ -93,6 +93,15 @@ void TableStack::analyExp(string s)
 	}
 }
 
+vector<char> TableStack::getLeftAny(){
+    return this->left_any;
+}
+vectot<char> TableStack::getRightAny(){
+    return this->to_any;
+}
+int* TableStack::getTableMap(){
+    return this->tableMap;
+}
 
 void TableStack::getAns()
 {
@@ -107,3 +116,5 @@ void TableStack::getAns()
 	analyExp(ss);
 
 }
+
+
