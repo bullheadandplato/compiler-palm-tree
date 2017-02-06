@@ -93,35 +93,12 @@ void TableStack::analyExp(string s)
 	}
 }
 
-void TableStack::print_out()
-{
-	//table
-	for (int i = 0; i<ter_copy.size(); i++)
-	{
-		cout << setw(10) << ter_copy[i];
-	}
-	cout << endl;
-	for (int i = 0; i<non_colt.size(); i++)
-	{
-		cout << non_colt[i] << ": ";
-		for (int j = 0; j<ter_copy.size(); j++)
-		{
-			if (tableMap[i][j] == -1)
-				cout << setw(10) << "error";
-			else
-				cout << setw(10) << analy_str[tableMap[i][j]].right;
-
-		}
-		cout << endl;
-	}
-}
 
 void TableStack::getAns()
 {
 	inputAndSolve();
 	display();
 	get_table();
-	print_out();
 
 	string ss;
 	cout << "Please enter the symbol string:" << endl;

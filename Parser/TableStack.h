@@ -6,15 +6,14 @@
 class TableStack :public Parser
 {
 protected:
-	vector<char> to_any; 
-	vector<char> left_any;
-	int tableMap[100][100];
+    vector<char> to_any;
+    vector<char> left_any;
+    int tableMap[100][100];
 public:
-	TableStack(){ memset(tableMap, -1, sizeof(tableMap)); }
+    TableStack(){ memset(tableMap, -1, sizeof(tableMap)); }
 
 	void get_table(); 
 	void analyExp(string s); 
-	void print_out();
 	void getAns(); 
 };
 #endif
