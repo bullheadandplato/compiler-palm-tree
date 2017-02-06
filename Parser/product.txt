@@ -1,8 +1,8 @@
-E->TA
-A->+TB
-A->$
-T->FB
-B->*FB
-B->$
+E->TK  
+K->+TK  
+K->$  
+T->FM  
+M->*FM  
+M->$  
+F->i  
 F->(E)
-F->i

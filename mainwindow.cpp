@@ -178,10 +178,10 @@ void MainWindow::on_pushButton_3_clicked()
     }else{
         //im in analyze mode
         ui->frame_2->hide();
-        ui->pushButton_3->hide();
 
     }
     ui->plainTextEdit->clear();
+    ui->pushButton_3->hide();
     QMessageBox::information(this,"Clear","Everything cleared!!");
 
 
@@ -359,14 +359,20 @@ void MainWindow::on_parseStringButton_clicked()
         char char2 = left_any[left_any.size() - 1];
         if (char1 == char2 && char1 == '#')
         {
-            //cout << setw(15) << "Accepted!" << endl;
+            QMessageBox::information(this,"Accepted","Input string is recognizable by given grammer");
+
             return;
         }
         if (char1 == char2)
         {
             to_any.pop_back();
             left_any.pop_back();
-            cout << setw(15) << char1 << "match" << endl;
+            outs="";
+            outs[0]=char1;
+            outs.append(" match");
+            QStandardItem *Row2 = new QStandardItem(outs);
+            Row2->setEditable(false);
+            model->setItem(count,2,Row2);
         }
         else if (parser.tableMap[parser.get_index(char1)][parser.get_nindex(char2)] != -1)
         {
@@ -379,11 +385,14 @@ void MainWindow::on_parseStringButton_clicked()
                     to_any.push_back(analy_str[tg].right[i]);
             }
 
-            //cout << setw(15) << analy_str[tg].right << endl;
+           QString temp=temp.fromStdString(analy_str[tg].right);
+           QStandardItem *Row2 = new QStandardItem(temp);
+           Row2->setEditable(false);
+           model->setItem(count,2,Row2);
         }
         else
         {
-            //cout << setw(15) << "error!" << endl;
+            QMessageBox::information(this,"Can't parse","Input string is not recognizable by given grammer");
             return;
         }
         count++;
