@@ -6,7 +6,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include"LexicalAnalyzer/LexAn.h"
-#include "Parser/Parser.h"
+#include "Parser/TableStack.h"
 namespace Ui {
 class MainWindow;
 }
@@ -39,7 +39,7 @@ private:
     QPushButton *openFileButton;
     QPushButton *aboutButton;
     LexAn       analyzer;
-    Parser      parser;
+    TableStack  parser;
     bool        isInParseMode;
 
     void populateTableView(std::vector<std::string> temp, std::string attr);

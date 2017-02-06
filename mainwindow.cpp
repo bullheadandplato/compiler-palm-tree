@@ -200,5 +200,5 @@ void MainWindow::on_parseButton_clicked()
     //set the parser options.
     parser.setProductions(productions);
     parser.setT(productions.size());
-
+    parser.getAns();
 }
