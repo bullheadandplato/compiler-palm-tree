@@ -44,6 +44,8 @@ void MainWindow::addWidgetsToolBar(){
     ui->mainToolBar->addWidget(aboutButton);
     //add action listeners to buttons
     connect(openFileButton,SIGNAL(clicked()),this,SLOT(openFileButtonClicked()));
+    connect(aboutButton,SIGNAL(clicked()),this,SLOT(aboutButtonClicked()));
+
 }
 void MainWindow::openFileButtonClicked(){
     //open file and set code editor text to it
@@ -54,6 +56,9 @@ void MainWindow::openFileButtonClicked(){
             if (file.open(QFile::ReadOnly | QFile::Text))
                 ui->plainTextEdit->setPlainText(file.readAll());
         }
+}
+void MainWindow::aboutButtonClicked(){
+    QMessageBox::about(this,"About","Developed by Osama Bin Omar");
 }
 
 void MainWindow::on_pushButton_2_clicked()

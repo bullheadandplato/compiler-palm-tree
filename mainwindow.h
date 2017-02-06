@@ -23,7 +23,7 @@ public:
 private slots:
     void on_plainTextEdit_textChanged();
     void openFileButtonClicked();
-
+    void aboutButtonClicked();
 
     void on_pushButton_2_clicked();
 
