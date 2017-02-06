@@ -33,6 +33,8 @@ private slots:
 
     void on_parseButton_clicked();
 
+    void on_parseStringButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SyntaxHighlighter *syntaxHigh;

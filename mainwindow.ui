@@ -417,7 +417,7 @@ font:14px;</string>
             <widget class="QLineEdit" name="symbolString"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="parseStringButton">
              <property name="text">
               <string>Check</string>
              </property>

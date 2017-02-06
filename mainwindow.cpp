@@ -306,10 +306,87 @@ void MainWindow::populateSets(){
 void MainWindow::on_parseStringButton_clicked()
 {
     //parse the input string according to given rules
-    QString value=ui->symbolString->text();
-    if(value.length()<1){
+    std::string s=ui->symbolString->text().toStdString();
+    if(s.length()<1){
         //string is empty
         QMessageBox::information(this,"No string to parse","Please input string to parse.");
         return;
     }
+    // get the necessary fields
+    vector<char>    left_any    = parser.getLeftAny();
+    vector<char>    to_any      = parser.getRightAny();
+    vector<char>    non_colt    = parser.getNonColt();
+    node*           analy_str   = parser.getAnalyString();
+
+    //set up the table ui
+    QTableView *table=ui->parserResultTable;
+    QStandardItemModel *model = new QStandardItemModel(non_colt.size(),3,this);
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Stack")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Remaining input")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Derivation")));
+
+    table->setModel(model);
+    model->setColumnCount(3);
+
+
+    for (int i = s.length() - 1; i >= 0; i--)
+        left_any.push_back(s[i]);
+
+    to_any.push_back('#');
+    to_any.push_back(non_colt[0]);
+    int count=0;
+
+    while (left_any.size()>0)
+    {
+
+        QString outs = "";
+        for (int i = 0; i<to_any.size(); i++)
+            outs[i]= to_any[i];
+        QStandardItem *Row0 = new QStandardItem(outs);
+        Row0->setEditable(false);
+        model->setItem(count,0,Row0);
+
+
+        outs = "";
+        for (int i = left_any.size() - 1; i >= 0; i--)
+            outs[i]= left_any[i];
+
+        QStandardItem *Row1 = new QStandardItem(outs);
+        Row1->setEditable(false);
+        model->setItem(count,1,Row1);
+
+        char char1 = to_any[to_any.size() - 1];
+        char char2 = left_any[left_any.size() - 1];
+        if (char1 == char2 && char1 == '#')
+        {
+            //cout << setw(15) << "Accepted!" << endl;
+            return;
+        }
+        if (char1 == char2)
+        {
+            to_any.pop_back();
+            left_any.pop_back();
+            cout << setw(15) << char1 << "match" << endl;
+        }
+        else if (parser.tableMap[parser.get_index(char1)][parser.get_nindex(char2)] != -1)
+        {
+            int tg = parser.tableMap[parser.get_index(char1)][parser.get_nindex(char2)];
+            to_any.pop_back();
+
+            if (analy_str[tg].right != "$")
+            {
+                for (int i = analy_str[tg].right.length() - 1; i >= 0; i--)
+                    to_any.push_back(analy_str[tg].right[i]);
+            }
+
+            //cout << setw(15) << analy_str[tg].right << endl;
+        }
+        else
+        {
+            //cout << setw(15) << "error!" << endl;
+            return;
+        }
+        count++;
+    }
+
 }
