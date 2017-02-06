@@ -19,10 +19,12 @@ MainWindow::MainWindow(QWidget *parent) :
     syntaxHigh=new SyntaxHighlighter(ui->plainTextEdit->document());
     //add button to main toolbar
     this->addWidgetsToolBar();
-    // hide the second frame
+    // hide the second frame and third
     ui->frame_2->hide();
+    ui->parserFrame->hide();
     //disable the clear button
     ui->pushButton_3->hide();
+
 
 }
 
@@ -56,6 +58,10 @@ void MainWindow::openFileButtonClicked(){
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    //hide the secod frame
+        if(!ui->parserFrame->isHidden()){
+            ui->parserFrame->hide();
+        }
 
     // first check if code editor has text
     if(ui->plainTextEdit->toPlainText().length()<=0){
@@ -164,14 +170,18 @@ void MainWindow::on_pushButton_3_clicked()
     //this is the clear button
     //check if im in analyze or parse mode
     if(isInParseMode){
-        //this is the parse mdoe
+        //this is the parse mode
+        ui->parserFrame->hide();
+        ui->parseButton->setEnabled(true);
+        isInParseMode=false;
+
     }else{
         //im in analyze mode
         ui->frame_2->hide();
-        ui->plainTextEdit->clear();
         ui->pushButton_3->hide();
 
     }
+    ui->plainTextEdit->clear();
     QMessageBox::information(this,"Clear","Everything cleared!!");
 
 
@@ -179,6 +189,24 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_parseButton_clicked()
 {
+    // first check if code editor has text
+    if(ui->plainTextEdit->toPlainText().length()<=0){
+                QMessageBox::information(this,"No code to parse","Pleaase add production rules in code area to parse.");
+                return;
+    }
+    isInParseMode=true;
+
+    //disable the parse button
+    ui->parseButton->setEnabled(false);
+    //hide the secod frame
+    if(!ui->frame_2->isHidden()){
+        ui->frame_2->hide();
+    }
+    //show the parse frame
+    ui->parserFrame->show();
+    //show the clear button
+    ui->pushButton_3->show();
+
       //get the total number of lines
     QString text=ui->plainTextEdit->toPlainText();
     QString temp;
@@ -205,23 +233,28 @@ void MainWindow::on_parseButton_clicked()
     populateSets();
 
 }
+
 void MainWindow::populateSets(){
+
     QTableView *table=ui->firstSetTable;
     vector<char> non_colt=parser.getNonColt();
     set<char>*   first_set=parser.getFirstSet();
     set<char>*   follow_set=parser.getFollowSet();
 
-    QStandardItemModel *model = new QStandardItemModel(non_colt.size(),2,this);
-    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Symbol")));
-    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Set")));
-    table->setModel(model);
-    table->setColumnWidth(1,200);
-    model->setColumnCount(2);
-    model->setRowCount(non_colt.size());
+    QStandardItemModel *modelFirst = new QStandardItemModel(non_colt.size(),2,this);
+    modelFirst->setHorizontalHeaderItem(0, new QStandardItem(QString("Symbol")));
+    modelFirst->setHorizontalHeaderItem(1, new QStandardItem(QString("Set")));
+    table->setModel(modelFirst);
+    modelFirst->setColumnCount(2);
+    modelFirst->setRowCount(non_colt.size());
 
     for (int i = 0; i<non_colt.size(); i++)
     {
-        QString tmp;
+        QString tmp="{ "; // opening bracket of set
+
+        QStandardItem *secondRow = new QStandardItem(QString(QChar(non_colt[i])));
+        secondRow->setEditable(false);
+        modelFirst->setItem(i,0,secondRow);
 
         set<char>::iterator it;
         for (it = first_set[i].begin(); it != first_set[i].end(); it++){
@@ -229,17 +262,42 @@ void MainWindow::populateSets(){
             tmp.append(", ");
 
         }
+        //add the closing bracked in string
+        tmp.replace(tmp.length()-2,tmp.length()," }");
+        //set the item table
         QStandardItem *firstRow = new QStandardItem(tmp);
         firstRow->setEditable(false);
-        model->setItem(i,1,firstRow);
+        modelFirst->setItem(i,1,firstRow);
     }
+
+    //follow set
+    QTableView *followTable=ui->followSetTable;
+    QStandardItemModel *modelFollow = new QStandardItemModel(non_colt.size(),2,this);
+    modelFollow->setHorizontalHeaderItem(0, new QStandardItem(QString("Symbol")));
+    modelFollow->setHorizontalHeaderItem(1, new QStandardItem(QString("Set")));
+    followTable->setModel(modelFollow);
+    modelFollow->setColumnCount(2);
+    modelFollow->setRowCount(non_colt.size());
+
 
     for (int i = 0; i<non_colt.size(); i++)
     {
-        cout << non_colt[i] << ": ";
+        QString tmp="{ "; // opening bracket of set
+
+        QStandardItem *secondRow = new QStandardItem(QString(QChar(non_colt[i])));
+        secondRow->setEditable(false);
+        modelFollow->setItem(i,0,secondRow);
+
         set<char>::iterator it;
-        for (it = follow_set[i].begin(); it != follow_set[i].end(); it++)
-            cout << *it << "  ";
-        cout << endl;
+        for (it = follow_set[i].begin(); it != follow_set[i].end(); it++){
+            tmp[tmp.length()]=QChar(*it);
+            tmp.append(", ");
+        }
+        //add the closing bracked in string
+        tmp.replace(tmp.length()-2,tmp.length()," }");
+        //set the item table
+        QStandardItem *firstRow = new QStandardItem(tmp);
+        firstRow->setEditable(false);
+        modelFollow->setItem(i,1,firstRow);
     }
 }
