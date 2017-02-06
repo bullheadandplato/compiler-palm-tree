@@ -191,7 +191,7 @@ void MainWindow::on_parseButton_clicked()
 {
     // first check if code editor has text
     if(ui->plainTextEdit->toPlainText().length()<=0){
-                QMessageBox::information(this,"No code to parse","Pleaase add production rules in code area to parse.");
+                QMessageBox::information(this,"No code to parse","Please add production rules in code area to parse.");
                 return;
     }
     isInParseMode=true;
@@ -299,5 +299,17 @@ void MainWindow::populateSets(){
         QStandardItem *firstRow = new QStandardItem(tmp);
         firstRow->setEditable(false);
         modelFollow->setItem(i,1,firstRow);
+    }
+}
+
+
+void MainWindow::on_parseStringButton_clicked()
+{
+    //parse the input string according to given rules
+    QString value=ui->symbolString->text();
+    if(value.length()<1){
+        //string is empty
+        QMessageBox::information(this,"No string to parse","Please input string to parse.");
+        return;
     }
 }
