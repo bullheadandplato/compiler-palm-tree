@@ -208,28 +208,7 @@ void Parser::inputAndSolve()
 	}
 }
 
-void Parser::display()
-{
-	cout << "FIRST SET" << endl;
-	for (int i = 0; i<non_colt.size(); i++)
-	{
-		cout << non_colt[i] << ": ";
-		set<char>::iterator it;
-		for (it = first_set[i].begin(); it != first_set[i].end(); it++)
-			cout << *it << "  ";
-		cout << endl;
-	}
 
-	cout << "FOLLOW SET" << endl;
-	for (int i = 0; i<non_colt.size(); i++)
-	{
-		cout << non_colt[i] << ": ";
-		set<char>::iterator it;
-		for (it = follow_set[i].begin(); it != follow_set[i].end(); it++)
-			cout << *it << "  ";
-		cout << endl;
-	}
-}
 /*
  * getter section
  *

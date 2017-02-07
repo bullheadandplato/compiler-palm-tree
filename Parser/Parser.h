@@ -39,7 +39,6 @@ public:
 	void get_first(char target); 
 	void get_follow(char target);
 	void inputAndSolve(); 
-	void display();
     void setT(int t);
     void setProductions(std::vector<string> product);
     node *getAnalyString();
