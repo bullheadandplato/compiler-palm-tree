@@ -1,11 +1,15 @@
 #include "Parser/Parser.h"
 
+/*
+ * return true if character is non-terminal else false
+*/
 bool Parser::isNotSymbol(char c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return true;
 	return false;
 }
+
 int Parser::get_index(char target)
 {
 	for (int i = 0; i<non_colt.size(); i++)
